@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Powered by the Beardo Chain</title>
+  <script src="https://unpkg.com/uuid@latest/dist/umd/uuidv4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js" integrity="sha512-szJ5FSo9hEmXXe7b5AUVtn/WnL8a5VofnFeYC2i2z03uS2LhAch7ewNLbl5flsEmTTimMN0enBZg/3sQ+YOSzQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="beardo-chain.js"></script>
+  <style>
+    .details .coming-soon {
+      color: #ccc;
+      font-style: italic;
+      font-weight: 100;
+    }
+    
+    .main-container {
+      display: flex;
+      flex-direction: row;
+      align-content: space-between;
+      flex-wrap: wrap;
+    }
+    .main-container > * {
+      max-width: 49vw;
+    }
+    
+    textarea {
+      width: 95%;
+      height: 20vh;
+    }
+    
+    
+    section {
+      margin-bottom: 1rem;
+    }
+    
+    .block-children {
+      padding-left:5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Beardo Chain</h1>
+  <section class="details">
+    <div class="chain-length"></div>
+    <div class="coming-soon branches">Branches coming soon</div>
+  </section>
+  <section class="main-container">
+    <div class="inputs">
+      <label for="content">Add your content</label><br/>
+      <textarea id="content" cols="60" rows="25"></textarea><br/>
+      <button onclick="generateBlock()">Generate Block</button>
+    </div>
+    <div class="blocks">
+    </div>
+  </section>
+  <script>
+    document.addEventListener('blockAdded', function () {
+      document.querySelector('.chain-length').innerHTML = `<span class="label">Blocks in the chain:</span> <span class="value">${BeardoLedger.list.length}</span>`
+      const block = BeardoLedger.getLatestBlock();
+      const htmlEl = document.createElement('div');
+      htmlEl.id = block.id
+      htmlEl.innerHTML = `<div class="block-data">
+  <pre>
+  ${JSON.stringify(block.data, null, 2)}
+  </pre>
+</div>
+<div class="block-children"></div>`
+      const parent = document.getElementById(block.parentId)
+      if (parent) {
+        parent.querySelector('.block-children').appendChild(htmlEl)
+      } else {
+        document.querySelector('.blocks').appendChild(htmlEl)
+      }
+    })
+    const BeardoLedger = new Ledger();
+
+    function generateBlock() {
+      const content = document.getElementById('content').value
+      BeardoLedger.addBlock({owner: Math.random() * (50000 - 10) + 10, content})
+      document.getElementById('content').value = ''
+    }
+  </script>
+</body>
+</html>

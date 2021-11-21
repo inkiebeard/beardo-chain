@@ -1,0 +1,22 @@
+{
+  "name": "beardo-chain",
+  "version": "0.0.1",
+  "description": "Beardo block chain backed content platform",
+  "main": "main.js",
+  "scripts": {
+    "test": "node -e \"console.log('not yet implemented');\""
+  },
+  "repository": "https://github.com/inkiebeard/beardo-chain.git",
+  "keywords": [
+    "blockcahin",
+    "content",
+    "platform",
+    "open source"
+  ],
+  "author": "Aaron Toomey <aaron@inkiebeard.codes>",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/inkiebeard/beardo-chain/issues"
+  },
+  "homepage": "https://github.com/inkiebeard/beardo-chain#readme"
+}
