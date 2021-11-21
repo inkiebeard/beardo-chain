@@ -2,10 +2,6 @@
   "name": "beardo-chain",
   "version": "0.0.1",
   "description": "Beardo block chain backed content platform",
-  "main": "main.js",
-  "scripts": {
-    "test": "node -e \"console.log('not yet implemented');\""
-  },
   "repository": "https://github.com/inkiebeard/beardo-chain.git",
   "keywords": [
     "blockcahin",
@@ -18,5 +14,18 @@
   "bugs": {
     "url": "https://github.com/inkiebeard/beardo-chain/issues"
   },
-  "homepage": "https://github.com/inkiebeard/beardo-chain#readme"
+  "homepage": "https://github.com/inkiebeard/beardo-chain#readme",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "test": "node -e \"console.log('not yet implemented');\""
+  },
+  "dependencies": {
+    "vue": "^3.2.16"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.9.3",
+    "vite": "^2.6.4"
+  }
 }
